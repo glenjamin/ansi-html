@@ -28,17 +28,13 @@ var _styles = {
 var _openTags = {
   '1': 'font-weight:bold', // bold
   '2': 'opacity:0.8', // dim
-  '3': '<i>', // italic
-  '4': '<u>', // underscore
+  '3': 'font-style:italic', // italic
+  '4': 'text-decoration:underline', // underscore
   '8': 'display:none', // hidden
-  '9': '<del>', // delete
+  '9': 'text-decoration:line-through', // delete
 };
-var _closeTags = {
-  '23': '</i>', // reset italic
-  '24': '</u>', // reset underscore
-  '29': '</del>' // reset delete
-};
-[0, 21, 22, 27, 28, 39, 49].forEach(function (n) {
+var _closeTags = {};
+[0, 21, 22, 23, 24, 27, 28, 29, 39, 49].forEach(function (n) {
   _closeTags[n] = '</span>';
 });
 
@@ -66,7 +62,7 @@ function ansiHTML(text) {
       }
       // Open tag.
       ansiCodes.push(seq);
-      return ot[0] == '<' ? ot : '<span style="' + ot + ';">';
+      return '<span style="' + ot + ';">';
     }
 
     var ct = _closeTags[seq];
